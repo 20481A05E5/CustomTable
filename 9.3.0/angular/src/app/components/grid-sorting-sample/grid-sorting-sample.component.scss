@@ -1,0 +1,1424 @@
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+.page-header {
+    height: 30px;
+    width: 100%;
+    background: #efefef 0% 0% no-repeat padding-box;
+    border: 1px solid #e9e9e9;
+  
+    .report-table-heading {
+      font-size: 12px;
+      font-weight: normal;
+      padding-left: 25px;
+      padding-top: 5px;
+      letter-spacing: 1.2px;
+      color: #707070;
+      text-transform: uppercase;
+      opacity: 1;
+      font-weight: bold;
+    }
+  }
+  
+  .page-footer {
+    display: flex;
+    align-items: center;
+  
+    .action-container-bottom-left {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  
+    .pagination-wrapper {
+      margin-left: auto;
+  
+      ::ng-deep .p-icon {
+        width: 2rem;
+        height: 1rem;
+      }
+    }
+  }
+  
+  @media (min-width: 1050px) {
+    ::ng-deep .header-fixed.subheader-fixed.subheader-enabled .wrapper {
+      padding-top: 65px !important;
+    }
+  }
+  
+  .report-table-wrapper {
+    padding: 10px 25px 0px 25px;
+  
+    .report-table-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      height: 25px;
+  
+      @media (max-width: 450px) {
+        flex-direction: column;
+  
+        .action-container-item-left {
+          max-width: 100% !important;
+          margin-bottom: 11px;
+        }
+  
+        .action-container-item-right {
+          margin-left: unset !important;
+        }
+      }
+  
+      .action-container-item-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        height: 25px;
+  
+        .input-group {
+          display: flex;
+          align-items: center;
+          height: 26px !important;
+         width: 443px !important;
+  
+          .form-control {
+            padding: 10px;
+            height: 100%;
+            border-radius: 4px 0 0 4px;
+            background-color: #fff; /* Set the background color to white */
+            border: 1px solid #ced4da; /* Border for the input field */
+            border-radius: 4px; /* Rounded corners */
+            padding: 0.5rem; /* Padding inside the input field */
+            flex: 1; /* Allow the input to take up available space */
+            font-size: 1rem; /* Adjust font size */
+            color: #495057; 
+  
+            &:focus {
+              border: 1px solid #e4e6ef;
+            }
+          }
+  
+          .input-group-append {
+            padding: 0px;
+            width: 37px;
+            height: 25px;
+            z-index: unset !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-right: 0px;
+            border-radius: 0 4px 4px 0;
+  
+            .search-icon {
+              width: 15px;
+              height: 15px;
+            }
+          }
+  
+          .btn-primary {
+            color: var(--kt-primary-inverse);
+            border-color: #30c5d2;
+            background-color: #30c5d2 !important;
+          }
+        }
+      }
+  
+      .action-container-item-right {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        gap: 15px;
+        flex-wrap: wrap;
+  
+        .icons {
+          display: flex;
+          gap: 15px;
+          align-items: center;
+  
+          .active {
+            cursor: pointer;
+            color: var(--primary);
+            width: 20px;
+            height: 20px;
+          }
+  
+          .inActive {
+            cursor: pointer;
+            color: #9e9e9e;
+            width: 20px;
+            height: 20px;
+          }
+        }
+  
+        .default-buttons-right,
+        .custom-buttons-right {
+        
+          align-items: center;
+          gap: 15px;
+        }
+      }
+    }
+  
+    .report-table-container {
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 4px;
+      position : relative !important;
+  
+      igx-grid {
+        border-radius: 4px;
+        width: 100%;
+        height: 100%;
+        box-shadow: none;
+  
+        ::ng-deep {
+          .igx-grid-thead__wrapper,
+          .igx-grid__tfoot {
+            border: none;
+          }
+  
+          .igx-checkbox__composite {
+            border-radius: 4px;
+            height: 15px;
+            width: 15px;
+          }
+  
+          .igx-checkbox__composite-wrapper {
+            width: unset;
+            height: unset;
+          }
+  
+          --cell-active-border-color: none;
+  
+          span {
+            font-size: 12px;
+            color: black;
+          }
+  
+          .task-filters-buttons span {
+            color: #ffffff !important;
+            border: none !important;
+            background: var(--background) !important;
+          }
+  
+          igx-icon {
+            color: black;
+          }
+  
+          igx-grid-cell {
+            font-size: 12px;
+          }
+  
+          /* // igx-grid-row {
+          //   user-select: none;
+          // } */
+  
+          igx-grid-row:hover,
+          .igx-grid__tr--selected,
+          .igx-grid__tr--selected:hover {
+            background: unset;
+            color: unset;
+          }
+        }
+  
+        ::ng-deep igx-grid-header-row {
+          .igx-grid-thead__wrapper .igx-grid__tr .igx-display-container {
+            igx-grid-header-group {
+              igx-grid-header {
+                
+                padding: 0px;
+                border-right: var(--header-border-width) var(--header-border-style) var(--header-border-color) !important;
+  
+                .igx-grid-th__title {
+                  position: relative;
+  
+                  .header-checkbox-display {
+                    display: flex;
+                    height: 30px;
+                    background: #e2e2e2 0% 0% no-repeat padding-box;
+                    color: #1f2d3d !important;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0px 9px;
+                    gap: 5px;
+                    cursor: pointer;
+                    position: relative;
+  
+                    .settings-icon {
+                      position: absolute;
+                      right: 4px;
+                      height: 100%;
+                      width: 20px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      background: #e2e2e2;
+                    }
+  
+                    .header-text-container {
+                      opacity: 1;
+                      text-align: left;
+                      line-height: 10px;
+                      font-weight: bold;
+                      /* // overflow-wrap: break-word; */
+                      white-space: break-spaces;
+                    }
+  
+                    /*.cursor-pointer {
+                      font-size: 12px;
+                      display: flex;
+                      width: 10px;
+                      height: 10px;
+                      align-items: center;
+                      justify-content: center;
+                      right: 9px;
+                    }*/
+                  }
+  
+                  .header-display {
+                    display: flex;
+                    height: 30px;
+                    background: #e2e2e2 0% 0% no-repeat padding-box;
+                    color: #1f2d3d !important;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0px 9px;
+                    gap: 5px;
+                    cursor: pointer;
+                    position: relative;
+  
+                    .settings-icon {
+                      position: absolute;
+                      right: 4px;
+                      height: 100%;
+                      width: 20px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      background: #e2e2e2;
+                    }
+  
+                    .header-text-container {
+                      opacity: 1;
+                      text-align: left;
+                      line-height: 10px;
+                      font-weight: bold;
+                      /* // overflow-wrap: break-word; */
+                      white-space: break-spaces;
+                    }
+  
+                    .cursor-pointer {
+                      font-size: 12px;
+                      display: flex;
+                      width: 10px;
+                      height: 10px;
+                      align-items: center;
+                      justify-content: center;
+                      right: 9px;
+                    }
+                  }
+  
+                  hr {
+                    margin: 0px;
+                  }
+  
+                  .header-filters {
+                    display: flex;
+                    height: 31px;
+                    background: #f6f6f6 0% 0% no-repeat padding-box;
+                    align-items: center;
+                    padding: 0px 9px;
+  
+                    igx-icon {
+                      width: 10px;
+                      height: 15px;
+                      padding-right: 16px;
+                      border-right: 1px solid #cacacc;
+                      color: black;
+                      font-size: 14px;
+                    }
+  
+                    igx-prefix {
+                      padding: 0;
+                    }
+  
+                    igx-suffix igx-icon {
+                      font-size: 16px;
+                      border: none;
+                    }
+  
+                    igx-icon[title='Choose Date'],
+                    igx-icon[title='Change Date'] {
+                      width: 22px;
+                      font-size: 14px;
+                    }
+  
+                    igx-input-group .igx-input-group__bundle {
+                      padding: 0px;
+                    }
+  
+                    .igx-input-group .igx-input-group__bundle .igx-input-group__bundle-main .igx-input-group__input {
+                      font-weight: 500;
+                      padding-left: 5px;
+                      font-size: 12px;
+                      caret-color: #000000 !important;
+                    }
+  
+                    igx-input-group,
+                    igx-date-range-start,
+                    igx-date-range-end {
+                      --idle-bottom-line-color: none;
+                      --hover-bottom-line-color: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  
+      .checkbox-cell {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  
+    .grid-container {
+      font-size: 14px;
+      line-height: 10px;
+      display: flex;
+      font-weight: 500;
+      margin-top: 10px;
+  
+      background: #989898 0% 0% no-repeat padding-box;
+      border: 1px solid #d2d2d2;
+      border-radius: 4px;
+      color: #ffffff;
+      flex-direction: column;
+    }
+  
+    hr {
+      margin: 10px 0;
+    }
+  }
+  
+  @media (min-width: 1900px) {
+    .report-table-container {
+      width: 1800px;
+      overflow: auto;
+    }
+  }
+  
+  :host ::ng-deep {
+    .igx-overlay__content {
+      width: 290px !important;
+      top: 153px !important;
+      left: 300px !important;
+    }
+  
+    .igx-grid-th__icons {
+      background-color: #f6f6f6;
+      position: absolute;
+      right: 8px;
+      min-width: unset;
+    }
+  
+    .igx-drop-down__item--selected.igx-drop-down__item--focused {
+      background: white;
+    }
+    .igx-grid__outlet {
+      .settings-icon,
+      .header-filters,
+      hr {
+        display: none;
+      }
+      .header-text-container {
+        float: left;
+      }
+    }
+  }
+  
+  ::ng-deep .primeng-paging-footer-btn {
+    p-paginator {
+      gap: 15px;
+  
+      .p-paginator-current {
+        color: #1f2d3d;
+        font-weight: 600;
+        height: 20px;
+        font-size: 14px;
+      }
+  
+      .p-paginator-pages {
+        button {
+          font-weight: 600;
+          font-size: 14px;
+          color: #1f2d3d;
+        }
+      }
+    }
+  
+    .p-inputwrapper {
+      background: #ffffff 0% 0% no-repeat padding-box;
+      border-radius: 4px;
+      width: 62px;
+      height: 37px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      .p-dropdown-panel {
+        background-color: rgb(255, 255, 255);
+        color: rgb(63, 66, 84);
+        border-radius: 2px;
+        box-shadow: rgb(0 0 0 / 10%) 1px 1px 5px;
+  
+        p-dropdownitem {
+          li {
+            padding-bottom: 2px;
+  
+            span {
+              padding: 5px;
+            }
+          }
+        }
+      }
+  
+      .p-dropdown {
+        .p-dropdown-label {
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+  
+  :host ::ng-deep {
+    .igx-checkbox__composite {
+      border-radius: 4px;
+      display: block;
+      background: #fff;
+      height: 15px;
+      width: 15px;
+      min-width: 15px;
+    }
+  
+    .igx-checkbox__label {
+      font-size: 12px;
+      color: #000000;
+      padding: 0 !important;
+    }
+  
+    .igx-grid__td--selected {
+      background: unset;
+      color: unset;
+    }
+  
+    .igx-checkbox--indeterminate .igx-checkbox__composite,
+    .igx-checkbox--checked .igx-checkbox__composite {
+      border-color: #23456b !important;
+      background: #23456b !important;
+    }
+  }
+  
+  :host ::ng-deep {
+    .p-paginator-pages {
+      display: flex;
+      align-items: center;
+  
+      button {
+        padding: 0px 5px;
+      }
+    }
+  
+    .p-paginator-current,
+    .p-paginator-icon {
+      padding: 0px 5px;
+    }
+  
+    .p-paginator .p-paginator-current,
+    .p-paginator .p-paginator-pages .p-highlight,
+    .p-paginator .p-dropdown {
+      color: #1f2d3d;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  
+    .p-dropdown {
+      padding: 0;
+      margin: 0;
+      height: 37px;
+    }
+  
+    .p-paginator {
+      background: transparent;
+      padding: 0 4px;
+    }
+  
+    .d-block {
+      display: inline-block !important;
+    }
+  
+    .igx-circular-bar {
+      width: 3rem;
+      height: 3rem;
+    }
+  
+    .igx-overlay__wrapper {
+      position: fixed !important;
+    }
+  
+    .export-drop-down .drop-down-outer-container igx-input-group {
+      background: #ffffff 0% 0% no-repeat padding-box !important;
+      border: 1px solid #cecece !important;
+      border-radius: 4px !important;
+      width: 175px !important;
+    }
+  }
+  
+  ::ng-deep {
+    .drop-down-text-field {
+      display: flex;
+      align-items: center;
+      color: #000;
+    }
+  
+    .igx-drop-down__item {
+      padding: 0px 10px !important;
+    }
+  
+    .marginTop {
+      margin-bottom: 6px;
+    }
+  
+    .export {
+      padding-left: 79% !important;
+      margin-top: 21px !important;
+    }
+  
+    .task-manager-footer {
+      font-size: 12px;
+      color: #1f2d3d;
+      font-weight: 500;
+      margin-top: 5px !important;
+      display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px; /* Adjust dynamically if needed */
+    }
+  
+    .footerButton {
+      padding-left: 0px !important;
+    }
+  
+    .drop-down-outer-container .input-label {
+      margin-bottom: 0px !important;
+      color: black;
+    }
+  
+    .margin {
+      margin-bottom: 6px;
+    }
+  
+    #margin {
+      margin-right: 6px;
+    }
+  
+    #emptyContainer {
+      background-color: grey;
+      width: 100%;
+      height: 150px;
+    }
+  
+    #emptyCard {
+      margin-top: 2px;
+      margin-bottom: 2px;
+      width: 26%;
+      height: 150px;
+    }
+  
+    .task-manager-footer-buttons {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+  
+      .task-filter-footer-filters {
+        margin-left: auto;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        height: 25px;
+        border-radius: 4px;
+        padding: 11px 21px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 10px;
+        opacity: 100%;
+        margin-right: 10px;
+        background-color: var(--primary);
+      }
+  
+      .task-filters {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        height: 28px;
+        border-radius: 10px;
+        padding: 18px 30px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 10px;
+        opacity: 100%;
+        margin-right: 10px;
+        background-color: var(--primary);
+      }
+  
+      .task-filters-buttons {
+        margin-top: 10px;
+      }
+  
+      .task-filters-comment {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        height: 28px;
+        border-radius: 10px;
+        padding: 18px 30px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 10px;
+        opacity: 100%;
+        background-color: var(--primary);
+      }
+    }
+  
+    .p-paginator .p-paginator-pages .p-paginator-page {
+      border-radius: 4px;
+    }
+  
+    .p-paginator {
+      background: #f9f9f9 !important;
+    }
+  }
+  
+  :host ::ng-deep {
+    igx-date-range-picker {
+      width: 100%;
+      height: 25px;
+  
+      .igx-input-group__bundle {
+        height: 100%;
+        flex-direction: row-reverse;
+  
+        .igx-input-group__bundle-main {
+          padding-left: 25px;
+        }
+  
+        igx-prefix {
+          position: absolute;
+          left: 5px;
+        }
+  
+        igx-icon {
+          color: var(--primary);
+        }
+      }
+    }
+  
+    .filters-action-button {
+      border: 1px solid #cacacc;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      height: 25px;
+      border-radius: 4px;
+      padding: 11px 21px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      background-color: #fff;
+      min-width: 125px;
+    }
+  
+    .left-actions {
+      span {
+        font: normal normal 500 12px/18px Jost;
+        letter-spacing: 0px;
+      }
+    }
+  }
+  
+  .report-table-actions-table-container {
+    display: flex;
+    flex-direction: column;
+  
+    .grid-container {
+      flex: auto;
+  
+      .report-table-container {
+        height: 100%;
+      }
+    }
+  }
+  
+  ::ng-deep {
+    .rowSelected {
+      background: #578fc7 !important;
+      cursor: pointer;
+      color: #ffffff !important;
+    }
+  
+    .pointerStyle {
+      cursor: pointer;
+    }
+  }
+  
+  .hide-pagination {
+    display: none;
+  }
+  
+  .header-filters {
+    ::ng-deep svg#clear_black_24dp {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  
+  ::ng-deep .igx-grid__td--number,
+  .igx-grid-th--number {
+    justify-content: flex-start;
+  }
+  ::ng-deep .igx-input-group--focused .igx-input-group__bundle {
+    caret-color: #f6f6f6 !important;
+  }
+  ::ng-deep :focus-visible {
+    outline: none !important;
+  }
+  ::ng-deep .igx-input-group__border {
+    height: 0px !important;
+    margin-top: 0px !important;
+    transform: none !important;
+    transform-origin: none !important;
+    background: none !important;
+  }
+  ::ng-deep .igx-input-group--focused .igx-input-group__border {
+    transition: none !important;
+    display: none !important;
+  }
+  
+  ::ng-deep
+    .report-table-wrapper
+    .report-table-container
+    igx-grid
+    igx-grid-header-row
+    .igx-grid-thead__wrapper
+    .igx-grid__tr
+    .igx-display-container
+    igx-grid-header-group
+    igx-grid-header
+    .igx-grid-th__title
+    .header-filters
+    .igx-input-group
+    .igx-input-group__bundle
+    .igx-input-group__bundle-main
+    .igx-input-group__input {
+    padding-top: 8px !important;
+  }
+  ::ng-deep
+    .report-table-wrapper
+    .report-table-container
+    igx-grid
+    igx-grid-header-row
+    .igx-grid-thead__wrapper
+    .igx-grid__tr
+    .igx-display-container
+    igx-grid-header-group
+    igx-grid-header
+    .igx-grid-th__title
+    .header-filters
+    igx-icon {
+    padding-top: 2px;
+  }
+  
+  .flex-space-around {
+    justify-content: space-between;
+  }
+  
+  .width-100 {
+    width: 100% !important;
+  }
+  
+  .invalid {
+    border-bottom: 1px solid red;
+  }
+  
+  .no-border {
+    border-bottom: none !important;
+  }
+  
+  ::ng-deep .igx-calendar__date--selected .igx-calendar__date-content {
+    background: #30c5d2 !important;
+  }
+  
+  ::ng-deep .igx-calendar__date--current .igx-calendar__date-content {
+    color: #30c5d2 !important;
+  }
+  
+  ::ng-deep .igx-calendar__date--selected.igx-calendar__date::after {
+    background: #30c5d2 !important;
+    border-radius: 4px !important;
+  }
+  
+  ::ng-deep .igx-calendar__date--selected.igx-calendar__date--current .igx-calendar__date-content {
+    color: #000 !important;
+  }
+  
+  ::ng-deep .igx-calendar__date--selected {
+    background: #30c5d2 !important;
+  }
+  
+  ::ng-deep .igx-date-picker .igx-calendar__date--current {
+    color: #30c5d2 !important;
+  }
+  
+  ::ng-deep .igx-calendar__date--selected.igx-calendar__date--last::before {
+    background: #30c5d2 !important;
+    border-radius: 4px !important;
+  }
+  
+  ::ng-deep .igx-drop-down__item--selected,
+  ::ng-deep .igx-drop-down__item--focused {
+    background: #fff !important;
+  }
+  
+  .loader-container {
+    position: absolute;
+    background-color: #00000022;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  ::ng-deep .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+    stroke: #23456b !important;
+    color: #23456b !important;
+  }
+  
+  .subscribe-dropdown {
+    ::ng-deep .igx-drop-down__list-scroll {
+      width: 140px !important;
+    }
+  }
+  
+  .exportDropDown {
+    height: 25px;
+  }
+  
+  .sort-container {
+    position: absolute;
+    top: 35px;
+    right: 5px;
+  
+    igx-icon {
+      font-size: 11px;
+      font-weight: 600;
+    }
+  }
+  
+  ::ng-deep .igx-calendar__date--selected.igx-calendar__date--last {
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+  }
+  
+  ::ng-deep .igx-calendar__date--selected.igx-calendar__date--first {
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+  }
+  
+  ::ng-deep .igx-calendar__date-content {
+    border-radius: 4px !important;
+  }
+  
+  input.form-control.m-input.search-filter {
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: #000 !important;
+  }
+  
+  ::ng-deep .igx-grid--compact .igx-grid__hierarchical-indent {
+    display: unset !important;
+    margin-left: unset !important;
+    margin-right: unset !important;
+    margin-bottom: unset !important;
+  }
+  ::ng-deep .igx-vhelper--vertical {
+    width: 13px !important;
+  }
+  ::ng-deep .igx-grid__scroll {
+    height: 19px !important;
+  }
+  
+  ::ng-deep .igx-drop-down__list-scroll {
+    max-height: 500px !important;
+  }
+  
+  ::ng-deep .igx-checkbox--checked:hover .igx-checkbox__ripple,
+  .igx-checkbox--checked:active .igx-checkbox__ripple {
+    background: transparent !important;
+  }
+  
+  /* // ::ng-deep .p-dropdown-item.p-highlight {
+  //   background: transparent !important;
+  // } */
+  ::ng-deep .igx-checkbox--checked:hover .igx-checkbox__ripple,
+  .igx-checkbox--checked:active .igx-checkbox__ripple {
+    background: #23456b !important;
+  }
+  .header-filters {
+    ::ng-deep .igx-input-group__input,
+    .igx-input-group__textarea {
+      height: 25px !important;
+    }
+    ::ng-deep .igx-input-group__bundle {
+      height: 25px !important;
+    }
+  }
+  ::ng-deep .igx-grid__tr {
+    display: flex;
+    background: var(--content-background);
+    border-bottom-color: var(--igx-grid-row-border-color, hsla(var(--ig-gray-400), 0.38)) !important;
+    outline-style: none;
+    position: relative;
+    background-clip: content-box !important;
+  }
+  ::ng-deep .igx-grid-th--sorted .sort-icon {
+    opacity: 1;
+    color: black !important;
+  }
+  ::ng-deep .igx-input-group__line {
+    background: transparent !important;
+  }
+  ::ng-deep .igx-input-group--search .igx-input-group__bundle {
+    box-shadow: none !important;
+  }
+  
+  ::ng-deep .igx-input-group--search.igx-input-group--focused .igx-input-group__bundle {
+    box-shadow: none !important;
+  }
+  ::ng-deep .igx-calendar__date:hover .igx-calendar__date-content::after,
+  ::ng-deep .igx-calendar__date--selected:hover .igx-calendar__date-content::after,
+  ::ng-deep .igx-calendar__date:focus .igx-calendar__date-content::after,
+  ::ng-deep .igx-calendar__date--selected:focus .igx-calendar__date-content::after,
+  ::ng-deep .igx-calendar__date--current:hover .igx-calendar__date-content,
+  ::ng-deep .igx-calendar__date--selected.igx-calendar__date--current:hover .igx-calendar__date-content::after {
+    background: #ededed4a;
+  }
+  ::ng-deep .igx-calendar__date--selected.igx-calendar__date--first.igx-calendar__date--last::after {
+    background: #30c5d2 !important;
+  }
+  ::ng-deep .igx-calendar__date--selected.igx-calendar__date--first.igx-calendar__date--last::before {
+    background: #30c5d2 !important;
+  }
+  ::ng-deep igc-trial-watermark {
+    display: none;
+  }
+  .cell-icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  
+  
+  .delete-icon {
+    margin-left: 8px;
+    color: red;
+  }
+  ::ng-deep .input-group-append.btn-primary.btn {
+    position: absolute;
+    top: 1px;
+    left: 445px;
+  }
+  ::ng-deep svg {
+    height: 16px;
+    width: 52px;
+  }
+  ::ng-deep div#report-table-actions {
+    padding-bottom: 48px !important;
+      padding-top: inherit;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .report-table-actions {
+    display: flex;
+    justify-content: space-between;
+    /* Adjust styles as per previous code */
+  }
+  
+  
+  
+  .settings-icon {
+    margin-left: auto;
+    cursor: pointer;
+    /* Adjust styles as per previous code */
+  }
+  
+  .header-text-container {
+    font-weight: bold;
+    /* Adjust styles as per previous code */
+  }
+  
+  /* dropdown.component.css */
+  .igx-drop-down {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .igx-drop-down-item {
+    padding: 8px;
+  }
+  
+  .igx-drop-down-item:hover {
+    background-color: #f5f5f5;
+  }
+  ::ng-deep igx-icon.material-icons.igx-icon {
+    position: relative;
+    right: 19px;
+  }
+  button.igx-button.igx-button--flat {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+  }
+  
+  .cell-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .cell-actions i {
+    cursor: pointer;
+    margin-right: 10px; /* Adjust spacing between icons */
+  }
+  .expanded-row-content {
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ccc;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .fa-caret-right,
+  .fa-caret-down {
+    font-size: 14px;
+  }
+  .expanded-row td {
+    background-color: #f9f9f9; /* Light background for expanded rows */
+    padding: 20px; /* Add some padding */
+    
+  }
+  .igx-grid {
+    table-layout: fixed; /* Ensures that columns respect the specified widths */
+  }
+  
+  .igx-column {
+    width: auto; /* Ensure column widths are not overridden */
+  }
+  
+  
+  
+  .grid-container {
+    width: 100%; /* Ensures the grid container uses available space */
+  }
+  ::ng-deep igx-grid {
+    --igx-grid-cell-padding: 10px; /* Adjust cell padding for better alignment */
+  }
+  
+  ::ng-deep .igx-grid__tr--expanded {
+    background-color: #f7f7f7; /* Different background color for expanded row */
+  }
+  
+  ::ng-deep .igx-grid__tr--expanded .app-row-detail {
+    padding: 10px;
+    border: 1px solid #cecece;
+    background-color: #ffffff;
+  }
+  
+  ::ng-deep .app-row-detail .header-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2a2a2a;
+  }
+  
+  .custom-row-detail {
+    width: 600px; 
+    height: fit-content;
+    border: none; 
+    padding: 10px; 
+  }
+  
+  ::ng-deep input[type="text"] {
+    display: flex;
+    align-items: center;
+    width: auto;
+    min-width: 0;
+    height: 100%;
+    position: relative;
+    grid-area: 1 / 2;
+    font-weight: 500;
+      padding-left: 5px;
+      font-size: 12px;
+      caret-color: #000 !important;
+      background: #f6f6f6 0% 0% no-repeat padding-box;
+      border: none !important;
+  }
+  .default-buttons-right {
+    font-size: 13px !important;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 15px !important;
+  
+  ::ng-deep select {
+    height: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box !important;
+    width: 175px;
+    height: 25px;
+    border-radius: 4px;
+    border: 1px solid rgb(202, 202, 204);
+    background: white;
+    --component-size: var(--ig-size, var(--ig-size-large));
+    height: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box !important;
+    width: 175px;
+    height: 25px;
+    border-radius: 4px;
+    border: 1px solid rgb(202, 202, 204);
+    background: white;
+    margin-left: px;
+    --component-size: var(--ig-size, var(--ig-size-large));
+  }
+  }
+  
+  ::ng-deep igx-icon.material-icons.igx-icon {
+    left: -8px;
+  }
+  
+  
+  ::ng-deep .igx-grid-th--sortable .sort-icon {
+    cursor: pointer;
+    opacity: 0.7;
+    display: none;
+  }
+  
+  ::ng-deep igx-grid-header-group#igx-grid-0_-1_0_2 {
+    min-width: 802px !important;
+    flex-basis: 802px !important;
+  }
+ ::ng-deep igx-grid-header-group#igx-grid-2_-1_0_2 {
+    min-width: 802px !important;
+}
+  
+  ::ng-deep .flex-display {
+    overflow: hidden !important;
+  }
+  
+  
+  .filter-container input {
+   
+    position: relative; /* Ensure it’s positioned correctly */
+    z-index: 10; /* Bring it to the front */
+  }
+  .sample-column {
+    max-width: 550px;
+  }
+  
+  .header-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .filter-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Adds some space between elements */
+  }
+  
+  .filter-container button {
+    z-index: 1; /* Adjust as needed */
+  }
+  
+  .filter-container input {
+    z-index: 2; /* Higher than the button */
+    flex-grow: 1; /* Allows the input to grow */
+  }
+  
+  .filter-container mat-menu {
+    z-index: 5; /* Ensure the menu shows above other elements */
+  }
+  ::ng-deep igx-grid-header#igx-grid-0_undefined {
+    background: #e2e2e2 0% 0% no-repeat padding-box;
+  }
+  
+  ::ng-deep .filter-container[_ngcontent-ng-c3813919498] {
+    display: flex;
+    height: 25px;
+    align-items: center;
+    
+    padding: 0 9px;
+  }
+  ::ng-deep igx-icon.material-icons.igx-icon {
+    font-size: 17px;
+    display: flex;
+    width: 10px;
+    height: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .filter-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .vertical-line {
+    width: 1px; /* Adjust width as needed */
+    height: 22px; /* Adjust height as needed */
+    background-color: #ccc; /* Adjust color as needed */
+    margin: 3px 5px; /* Adjust spacing as needed */
+  }
+
+  .report-table-wrapper,
+.report-table-container,
+.grid-container {
+    width: 100% !important;
+    box-sizing: border-box !important; /* Ensures padding is included in total width */
+}
+// ::ng-deep .action-container-item-left {
+//   display: flex;
+//   flex-direction: column-reverse;
+// }
+/* Generic media query to handle layout adjustments */
+@media screen and (max-width: 1200px) {
+  .report-table-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .action-container-item-left,
+  .action-container-item-right {
+    width: 100%; /* Full width for both items on smaller screens */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  /* Move the app-button to the left of the export button */
+  .action-container-item-left {
+    order: 1;
+    justify-content: flex-start;
+  }
+
+  .action-container-item-right {
+    order: 2;
+    justify-content: flex-end;
+  }
+}
+
+/* Media query for wider screens */
+@media screen and (min-width: 1201px) {
+  .report-table-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .action-container-item-left {
+    order: 1;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .action-container-item-right {
+    order: 2;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+@media screen and (max-width: 1255px) and (max-height: 755px) {
+  .report-table-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .action-container-item-left,
+  .action-container-item-right {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .action-container-item-left {
+    order: 1;
+  }
+
+  .action-container-item-right {
+    order: 2;
+    justify-content: flex-start;
+  }
+
+  .default-buttons-right select {
+    margin-left: 10px;
+  }
+
+  .action-container-item-left app-button {
+    width: auto; /* Ensures the app-button takes its content width */
+  }
+}
+
+
+.toast-top-center {
+  top: 20px !important; /* Adjust as needed */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  position: fixed !important;
+  z-index: 9999 !important; /* Ensure it appears on top */
+}
+// .custom-snackbar {
+//   z-index: 9999 !important; /* Adjust the value as needed */
+// }
+
+  

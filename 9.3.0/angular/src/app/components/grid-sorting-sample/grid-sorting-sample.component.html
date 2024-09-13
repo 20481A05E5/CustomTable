@@ -1,0 +1,223 @@
+<div
+  class="report-table-wrapper report-table-actions-table-container accordion-selected-color"
+  id="table-wrapper"
+  [ngStyle]="{
+    height: gridHeight ? gridHeight : 'calc(100vh - 75px)',
+    minHeight: minTableHeight ? minTableHeight : '',
+    maxHeight: maxGridHeight
+  }"
+>
+  <div class="report-table-actions" id="report-table-actions">
+    <div class="action-container-item-left">
+      <div class="input-group" *ngIf="showSearch">
+        <input
+          name="filterText"
+          autocomplete="off"
+          autoFocus
+          class="form-control m-input search-filter"
+          [placeholder]="searchPlaceholder"
+          (keyup)="searchTable($event)"
+          type="text"
+        />
+        <div class="input-group-append btn-primary btn">
+          <svg
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="action-container-item-right">
+      <div class="default-buttons-right">
+        <!-- Button that triggers the dropdown -->
+
+        <select (change)="onDropdownChange($event)">
+          <option value="" disabled selected>Export</option>
+          <option value="csv">Export to CSV</option>
+          <option value="excel">Export to Excel</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-container" id="grid-container">
+    <div class="report-table-container">
+      <igx-grid
+        #sourceGrid
+        displayDensity="compact"
+        primaryKey="id"
+        [height]="'100%'"
+        [width]="'100%'"
+        [autoGenerate]="false"
+        [hideRowSelectors]="true"
+        cellSelection="none"
+        [data]="searchedGridData"
+        [rowSelection]="selectionMode"
+        moving="true"
+        [selectedRows]="selectedRows"
+        [sortStrategy]="noopSortStrategy"
+        (rowToggle)="onRowToggle($event)"
+        (cellClick)="deselectCellClick($event)"
+        [clipboardOptions]="options"
+        [rowClasses]="rowActiveClasses"
+        [ngClass]="{ gray: expandableToggle, blue: !expandableToggle }"
+      >
+        <igx-column
+          *ngFor="let columns of filteredHeader; let i = index; let last = last"
+          [field]="columns.value"
+          [header]="columns.header"
+          [width]="getColumnWidth(columns.value)"
+          [dataType]="columns.dataType"
+          [resizable]="true"
+          [sortable]="columns.header ? true : false"
+          [cellClasses]="cellActiveClasses"
+          [headerTemplate]="hTemplate"
+          [headerStyles]="
+            columns.isActive || columns.input ? activateStyle : ''
+          "
+          [ngStyle]="{ color: columns.color }"
+        >
+          <!-- Header Template with Settings Icon -->
+          <ng-template class="igx-headers" igxHeader let-column #hTemplate>
+            <div class="header-display" (click)="$event.stopPropagation()">
+              <span>{{ column.header }}</span>
+
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <igx-icon
+                  (click)="toggleDropdown(column.field)"
+                  [attr.draggable]="false"
+                >
+                  settings
+                </igx-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="hideColumn(column.field)">
+                  <i class="fa fa-eye-slash"></i>&nbsp;&nbsp;
+                  <span>Hide Column</span>
+                </button>
+
+                <button mat-menu-item (click)="toggleFilter()">
+                  <i class="fa fa-filter"></i>&nbsp;&nbsp;
+                  <span *ngIf="showFilter">Hide Filter</span>
+                  <span *ngIf="!showFilter">Show Filter</span>
+                </button>
+              </mat-menu>
+            </div>
+
+            <hr />
+            <div
+              class="filter-container"
+              *ngIf="getFilterVisibility(column.field)"
+              style="pointer-events: auto"
+              (click)="fieldInput.focus()"
+            >
+              <!-- Filter Icon -->
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Filter"
+              >
+                <span class="material-icons"> filter_alt </span>
+              </button>
+              <div class="vertical-line"></div>
+              <!-- Input Field for Filter Query -->
+              <input
+                #fieldInput
+                id="inpt"
+                type="text"
+                name="filter-input"
+                (mousedown)="$event.stopPropagation()"
+                (click)="$event.stopPropagation()"
+                [(ngModel)]="filterQuery[column.field]"
+                (ngModelChange)="applyFilter(column.field)"
+                [placeholder]="
+                  currentFilterPlaceholder[column.field] || 'Contains...'
+                "
+              />
+
+              <!-- Dropdown Menu -->
+              <mat-menu #menu="matMenu">
+                <button
+                  mat-menu-item
+                  *ngFor="let item of items"
+                  (click)="selectFilterOption(item, column.field)"
+                >
+                  <span>&nbsp;&nbsp;{{ item.field }}</span>
+                </button>
+              </mat-menu>
+            </div>
+          </ng-template>
+        </igx-column>
+
+        <!-- Delete button column -->
+        <igx-column width="36px">
+          <ng-template igxCell let-cell="cell">
+            <button (click)="deleteRow(cell.row)" [disabled]="!canDelete">
+              <i class="fa fa-trash"></i>
+            </button>
+          </ng-template>
+        </igx-column>
+        <!-- Detail Row -->
+
+        <ng-template igxGridDetail let-dataItem>
+          <div
+            (keydown)="$event.stopPropagation()"
+            style="width: 100%; height: fit-content; overflow-x: hidden"
+            [attr.data-row-id]="dataItem.id"
+          >
+            <app-row-detail
+              [id]="dataItem.id"
+              [order]="dataItem.order"
+              [questions]="dataItem.questions"
+              (saveEvent)="handleSave($event)"
+            ></app-row-detail>
+          </div>
+        </ng-template>
+      </igx-grid>
+    </div>
+  </div>
+</div>
+<div
+  class="task-manager-footer page-footer primeng-paging-footer-btn task-manager-footer-buttons"
+  id="table-footer"
+  [ngStyle]="{
+    marginTop: !(showPagination || actionsBottomLeft) ? '0px' : '10px'
+  }"
+>
+  <div class="action-container-bottom-left" *ngIf="actionsBottomLeft">
+    <ng-container [ngTemplateOutlet]="actionsBottomLeft"></ng-container>
+  </div>
+  <div class="pagination-wrapper">
+    <igx-paginator
+      class="remote-paginator"
+      #paginator
+      [(perPage)]="initialSize"
+      [totalRecords]="
+        totalGridRecordCount ? totalGridRecordCount : gridData.length
+      "
+      [selectOptions]="rowsPerPageOptions"
+      (pageChange)="onPa($event)"
+      (perPageChange)="onPerPageChange($event)"
+    >
+      <igx-paginator-content>
+        <span class="total-records-count">{{
+          "TotalRecordsCount"
+            | localize
+              : (totalGridRecordCount ? totalGridRecordCount : gridData.length)
+        }}</span>
+        <igx-page-nav></igx-page-nav>
+        <igx-page-size></igx-page-size>
+      </igx-paginator-content>
+    </igx-paginator>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="grid-data">
+  <app-grid-sorting-sample
+    [setColumnHeader]="columnHeader"
+    [setGridData]="gridData"
+    (emitDeleteItem)="deleteRow($event)"
+    (saveEvent)="updateSurveyEditorData($event)"
+  ></app-grid-sorting-sample>
+
+  <app-button
+    width="100px"
+    (onButtonClicked)="onButtonClick($event)"
+  ></app-button>
+</div>

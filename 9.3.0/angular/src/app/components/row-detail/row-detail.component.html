@@ -1,0 +1,47 @@
+<div class="flex-display">
+  <div class="question-details">
+    <div class="input-groups">
+      <label for="orderInput" class="label">{{ "OrderName" | localize }}</label>
+      <input
+        id="orderInput"
+        type="text"
+        [(ngModel)]="order"
+        class="form-control input-control"
+        [disabled]="!canUpdate"
+      />
+    </div>
+    <div class="input-groups">
+      <label for="questionsTextarea" class="label">{{
+        "QuestionName" | localize
+      }}</label>
+      <textarea
+        id="questionsTextarea"
+        [(ngModel)]="questions"
+        (input)="expandTextarea()"
+        class="form-control auto-size"
+        [disabled]="!canUpdate"
+      ></textarea>
+    </div>
+    <div class="checkbox-group">
+      <div class="checkbox-one">
+        <label>
+          <input type="checkbox" [(ngModel)]="popup" [disabled]="!canUpdate" />
+          {{ " Popup Question" | localize }}
+        </label>
+      </div>
+      <div class="checkbox-two">
+        <label>
+          <input
+            type="checkbox"
+            [(ngModel)]="startSurvey"
+            [disabled]="!canUpdate"
+          />
+          {{ "StartSurvey" | localize }}
+        </label>
+      </div>
+    </div>
+    <button (click)="save()" [disabled]="!canUpdate">
+      {{ "Save" | localize }}
+    </button>
+  </div>
+</div>
